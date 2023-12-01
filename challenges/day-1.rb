@@ -12,3 +12,14 @@
 
 # - print the response string
 # puts response
+
+# ----------------------
+
+# Attempt 2: Download the data as a text file and analyse that instead
+
+file = File.open("day-1-input.txt")
+data = file.read
+puts data
+file.close
+
+# This works, we now have the input store in a variable called 'file'
