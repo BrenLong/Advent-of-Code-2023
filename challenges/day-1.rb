@@ -30,20 +30,40 @@
 # file.close
 
 # This works, we now have the input store in a variable called 'file'
+# The above method shows me how I can open a file and read it
+
 
 ### Step 2: Find the first and last integers on each line of the text
 
-# The above method shows me how I can open a file and read it
 # Now I need to do this in a loop so that we can analyse the file line by line
-# For loops apparently aren't idiomatic in Ruby so we're using "each/do"
+# for loops apparently aren't idiomatic in Ruby so we're using "each/do"
 # - Open the file in read mode, pass that file to the block below in the 'file' variable
 # - Call the each_line method (built into Ruby) on the file, pass each line to the block below in the 'line' variable
 # - read the line
 
+# File.open("day-1-input.txt", "r") do |file|
+#   file.each_line do |line|
+#     puts line
+#   end
+# end
+
+
+
+# Building on the above, now we need to find the first and last integers on each line
+# Combine them to create a new integer
+# Add all the integers together
+
+total = 0
+
 File.open("day-1-input.txt", "r") do |file|
   file.each_line do |line|
-    puts line
+    first_digit = line[/\d/] # use the 'element reference [] to act on a string. When used with a regular expression, it returns the first instance of the regular expression. /\d/ denotes an integer'
+    last_digit = line[line.rindex(/\d/)] # the .rindex method finds the last occurence of a substring or pattern. Here's it's finding the last integer and giving us its index
+    combined_number = "#{first_digit}#{last_digit}".to_i # create a variable of the combined string and turn it into an integer
+    total += combined_number
   end
 end
 
-#
+puts total
+
+# Add the integers together
